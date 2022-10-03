@@ -34,6 +34,9 @@ function App() {
         },
         {
           path: '/member/:memberId',
+          loader: async ({ params }) => {
+            return fetch(`https://jsonplaceholder.typicode.com/users/${params.memberId}`)
+          },
           element: <MemberDetails />
         }
       ]
