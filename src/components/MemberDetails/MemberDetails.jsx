@@ -10,7 +10,7 @@ const MemberDetails = () => {
             <p><strong>Address : </strong>{address?.city}</p>
             <p><strong>Email : </strong>{email}</p>
             <p><strong>Phone : </strong>{phone}</p>
-            <p><strong>Website : </strong>{website}</p>
+            <p><strong>Website : </strong> {website}</p>
         </div>
     );
 };

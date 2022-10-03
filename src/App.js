@@ -8,6 +8,7 @@ import Contact from './components/Contact/Contact';
 import Error from './components/Error/Error';
 import Team from './components/Team/Team';
 import MemberDetails from './components/MemberDetails/MemberDetails';
+import PostDetails from './components/PostDetails/PostDetails';
 
 
 function App() {
@@ -24,7 +25,20 @@ function App() {
         { path: '/', element: <Home /> },
         { path: '/home', element: <Home /> },
         { path: '/about', element: <About /> },
-        { path: '/blog', element: <Blog /> },
+        {
+          path: '/blog',
+          loader: async () => {
+            return fetch(`https://jsonplaceholder.typicode.com/posts`)
+          },
+          element: <Blog />
+        },
+        {
+          path: '/post-details/:postId',
+          loader: async ({ params }) => {
+            return fetch(`https://jsonplaceholder.typicode.com/posts/${params.postId}`)
+          },
+          element: <PostDetails />
+        },
         {
           path: '/team',
           loader: async () => {
@@ -38,7 +52,8 @@ function App() {
             return fetch(`https://jsonplaceholder.typicode.com/users/${params.memberId}`)
           },
           element: <MemberDetails />
-        }
+        },
+
       ]
     },
     { path: '/contact', element: <Contact /> },
