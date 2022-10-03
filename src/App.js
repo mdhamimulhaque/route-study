@@ -7,6 +7,7 @@ import Main from './layout/Main';
 import Contact from './components/Contact/Contact';
 import Error from './components/Error/Error';
 import Team from './components/Team/Team';
+import MemberDetails from './components/MemberDetails/MemberDetails';
 
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
           },
           element: <Team />
         },
+        {
+          path: '/member/:memberId',
+          element: <MemberDetails />
+        }
       ]
     },
     { path: '/contact', element: <Contact /> },
