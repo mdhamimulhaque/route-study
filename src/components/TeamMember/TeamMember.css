@@ -1,0 +1,11 @@
+.member_box {
+ background-color: darksalmon;
+ padding: 20px;
+ margin-bottom: 20px;
+ width: 300px;
+ border-radius:5px ;
+ -webkit-border-radius:5px ;
+ -moz-border-radius:5px ;
+ -ms-border-radius:5px ;
+ -o-border-radius:5px ;
+}

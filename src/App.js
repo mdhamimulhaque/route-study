@@ -1,23 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './components/Home/Home';
+import About from './components/About/About';
+import Blog from './components/Blog/Blog';
+import Main from './layout/Main';
+import Contact from './components/Contact/Contact';
+import Error from './components/Error/Error';
+import Team from './components/Team/Team';
+
 
 function App() {
+  const router = createBrowserRouter([
+    // { path: '/', element: <Home /> },
+    // { path: '/home', element: <Home /> },
+    // { path: '/about', element: <About /> },
+    // { path: '/blog', element: <Blog /> },
+
+    {
+      path: '/',
+      element: <Main />,
+      children: [
+        { path: '/', element: <Home /> },
+        { path: '/home', element: <Home /> },
+        { path: '/about', element: <About /> },
+        { path: '/blog', element: <Blog /> },
+        {
+          path: '/team',
+          loader: async () => {
+            return fetch('https://jsonplaceholder.typicode.com/users')
+          },
+          element: <Team />
+        },
+      ]
+    },
+    { path: '/contact', element: <Contact /> },
+    { path: '*', element: <Error /> }
+  ])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }
